@@ -1,0 +1,95 @@
+<div class="table-wrapper">
+<!--List Appointment-->
+<table class="table table-bordered text-center">
+    <colgroup>
+        <col style="width: 10%">   <!-- ID -->
+        <col style="width: 20%">   <!-- Date -->
+        <col style="width: 20%">   <!-- patient -->
+        <col style="width: 20%">   <!-- doctor -->
+        <col style="width: 20%">   <!-- staff -->
+        <col style="width: 10%">   <!-- Actions -->
+      </colgroup>  
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Date</th>
+        <th>Patient</th>
+        <th>Doctor</th>
+        <th>Staff</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="appointmentList.length === 0">
+        <td colspan="4" class="text-center">No data available</td>
+      </tr>
+      <tr *ngFor="let appointment of appointmentList">
+        <td style="text-align: center;">
+          {{ appointment.id }}
+        </td>
+        <td style="text-align: center;">
+            {{ appointment.date | date: "dd/MM/yyyy HH:mm"}}
+        </td>
+        <td style="text-align: left;">
+            {{ appointment.patient  }}
+        </td>
+        <td style="text-align: left;">
+            {{ appointment.doctor }}
+        </td>
+        <td style="text-align: left;">
+          {{ appointment.staff }}
+        </td>
+        <td>
+            <img  src="assets/images/icons/trash-alt.svg" 
+            style="height: 30px;width: 30px;max-height: 30px;max-width: 30pc;"
+            (click)="deleteAppointment(appointment.id)"/>
+        </td>
+      </tr>
+    </tbody>
+</table>
+</div>
+
+<!--Create new Appointment-->
+<div class="table-wrapper">
+<form (ngSubmit)="addAppointment()" #formAppointment="ngForm">
+  <table class="table table-bordered text-center">
+      <colgroup>
+          <col style="width: 10%">   <!-- ID -->
+          <col style="width: 20%">   <!-- Date -->
+          <col style="width: 20%">   <!-- patient -->
+          <col style="width: 20%">   <!-- doctor -->
+          <col style="width: 20%">   <!-- staff -->
+          <col style="width: 10%">   <!-- Actions -->
+        </colgroup>      
+      <tbody>
+        <tr>
+          <td>&nbsp;</td>
+          <td>
+              <input type="date" #appointmentDate [(ngModel)]="appointmentNew.date" required name="date">
+          </td>
+          <td>
+              <select #appointmentPatient [(ngModel)]="appointmentNew.idPatient" required name="patient">
+                  <option *ngFor="let p of patients" [value]="p.id">{{p.name}}</option>
+              </select>
+          </td>
+          <td>
+              <select #appointmentDoctor [(ngModel)]="appointmentNew.idDoctor" required name="doctor">
+                  <option *ngFor="let d of doctors" [value]="d.id">{{d.name}}</option>
+              </select>
+          </td>
+          <td>
+              <select #appointmentStaff [(ngModel)]="appointmentNew.idStaff" required name="staff">
+                  <option *ngFor="let s of staff" [value]="s.id">{{s.name}}</option>
+              </select>
+          </td>
+          <td>
+            <button type="submit" [disabled]="!formAppointment.valid" class="btn btn-link p-0">
+                <img  src="assets/images/icons/plus-icon.svg" 
+                style="height: 30px;width: 30px;max-height: 30px;max-width: 30pc;"/>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+</form>
+</div>

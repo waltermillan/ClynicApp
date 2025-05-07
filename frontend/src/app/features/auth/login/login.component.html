@@ -1,0 +1,34 @@
+<div class="k-card login-container">
+  <div class="k-card-body">
+    <h2 class="k-card-title">Log in to your account</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <label for="username">UserName:</label>
+      <input
+        kendoTextBox
+        id="username"
+        formControlName="username"
+        [class.k-invalid]="shouldShowError('username')"
+      />
+      <div class="k-text-error" *ngIf="shouldShowError('username')">
+        Usuario requerido
+      </div>
+
+      <label for="password">Password:</label>
+      <input
+        kendoTextBox
+        type="password"
+        id="password"
+        formControlName="password"
+        [class.k-invalid]="shouldShowError('password')"
+      />
+      <div class="k-text-error" *ngIf="shouldShowError('password')">
+        password required
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid" class="login-button">
+        Log in
+      </button>
+      <p *ngIf="errorMessage" class="k-text-error">{{ errorMessage }}</p>
+    </form>
+  </div>
+</div>

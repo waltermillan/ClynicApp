@@ -1,0 +1,83 @@
+<!--List doctors-->
+<div class="table-wrapper"><
+<table class="table table-bordered text-center">
+    <colgroup>
+        <col style="width: 10%">   <!-- ID -->
+        <col style="width: 25%">   <!-- Name -->
+        <col style="width: 25%">   <!-- ID Speciality -->
+        <col style="width: 25%">   <!-- Birth date -->
+        <col style="width: 15%">   <!-- Actions -->
+      </colgroup>
+      
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Speciality</th>
+        <th>Birth date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="doctorList.length === 0">
+        <td colspan="4" class="text-center">No data available</td>
+      </tr>
+      <tr *ngFor="let doctor of doctorList">
+        <td style="text-align: center;">
+            {{ doctor.id }}
+        </td>
+        <td style="text-align: left;">
+            {{ doctor.name }}
+        </td>
+        <td style="text-align: left;">
+            {{ doctor.speciality }}
+        </td>
+        <td style="text-align: center;">
+            {{ doctor.dateOfBirth | date: "dd/MM/yyyy" }}
+        </td>
+        <td>
+            <img  src="assets/images/icons/trash-alt.svg" 
+            style="height: 30px;width: 30px;max-height: 30px;max-width: 30pc;"
+            (click)="deleteDoctor(doctor.id)"/>
+        </td>
+      </tr>
+    </tbody>
+</table>
+</div>
+
+<!--Create new doctor-->
+<div class="table-wrapper">
+<form (ngSubmit)="addDoctor()" #formDoctor="ngForm">
+  <table class="table table-bordered text-center">
+    <colgroup>
+        <col style="width: 10%">   <!-- ID -->
+        <col style="width: 25%">   <!-- Name -->
+        <col style="width: 25%">   <!-- ID Speciality -->
+        <col style="width: 25%">   <!-- Birth date -->
+        <col style="width: 15%">   <!-- Actions -->
+      </colgroup>      
+    <tbody>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+            <input type="text" #doctorName [(ngModel)]="doctorNew.name" required name="name">
+        </td>
+        <td>
+            <select #doctorSpectiality [(ngModel)]="doctorNew.idSpeciality" required name="Speciality">
+                <option *ngFor="let s of specialities" [value]="s.id">{{s.name}}</option>
+            </select>
+        </td>
+        <td>
+            <input type="date" #doctorDateOfBirth [(ngModel)]="doctorNew.dateOfBirth" required name="DateOfBirth">
+        </td>
+        <td>
+            <button type="submit" [disabled]="!formDoctor.valid" class="btn btn-link p-0">
+              <img  src="assets/images/icons/plus-icon.svg" 
+              style="height: 30px;width: 30px;max-height: 30px;max-width: 30pc;"/>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+</div>

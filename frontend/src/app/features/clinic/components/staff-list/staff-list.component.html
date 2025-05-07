@@ -1,0 +1,93 @@
+
+<!--List Staff-->
+<div class="table-wrapper">
+  <table class="table table-bordered text-center">
+      <colgroup>
+        <col style="width: 10%">   <!-- ID -->
+        <col style="width: 25%">   <!-- Name -->
+        <col style="width: 25%">   <!-- User name -->
+        <col style="width: 25%">   <!-- Date of Birth -->
+        <col style="width: 15%">   <!-- Actions -->
+      </colgroup>  
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>UserName</th>
+          <th>DateOfBirth</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="staffList.length === 0">
+          <td colspan="5" class="text-center">No data available</td>
+        </tr>
+        <tr *ngFor="let staff of staffList">
+          <td style="text-align: center;">
+              {{ staff.id }}
+          </td>
+          <td style="text-align: left;">
+              {{ staff.name }}
+          </td>
+          <td style="text-align: center;">
+              {{ staff.userName }}
+          </td>
+          <td style="text-align: center;">
+              {{ staff.dateofBirth | date: 'yyyy-MM-dd' }}
+          </td>
+          <td *ngIf="staff.userName != userLogged; else tdSameUser">
+              <img  src="assets/images/icons/trash-alt.svg" 
+              style="height: 30px;width: 30px;max-height: 30px;max-width: 30pc;"
+              (click)="deleteStaff(staff.id)"/>
+          </td>
+          <ng-template #tdSameUser>
+            <td>
+              <img  src="assets/images/icons/no-entry.svg" 
+              style="height: 30px;width: 30px;max-height: 30px;max-width: 30pc;"
+              (click)="showSpetialMessage()"/>
+          </td>
+          </ng-template>
+        </tr>
+      </tbody>
+  </table>
+</div>
+
+<!-- Create new Patient -->
+<div class="table-wrapper">
+  <form (ngSubmit)="addStaff()" #staffForm="ngForm">
+  <table class="table table-bordered text-center">
+    <colgroup>
+      <col style="width: 10%">
+      <col style="width: 25%">
+      <col style="width: 25%">
+      <col style="width: 25%">
+      <col style="width: 15%">
+    </colgroup>
+    <thead class="invisible-header">
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>UserName</th>
+        <th>DateOfBirth</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>&nbsp;</td>
+        <td><input type="text" [(ngModel)]="staffNew.name" required name="name"></td>
+        <td><input type="text" [(ngModel)]="staffNew.userName" required name="userName"></td>
+        <td><input type="date" [(ngModel)]="staffNew.dateofBirth" required name="dateofBirth"></td>
+        <td>
+          <button type="submit" [disabled]="!staffForm.valid" class="btn btn-link p-0">
+            <img src="assets/images/icons/plus-icon.svg"
+                style="height: 30px; width: 30px;"/>
+              </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
+</div>
+
+  

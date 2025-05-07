@@ -1,0 +1,33 @@
+<div class="sidebar">
+  <div class="sidebar-top">
+    <img src="/assets/images/icons/logo.png" alt="App Logo" class="no-style logo" />
+    <nav>
+      <a routerLink="/home" routerLinkActive="active">Home</a>
+      <a routerLink="/clinic/patients" routerLinkActive="active">Patients</a>
+      <a routerLink="/clinic/staff" routerLinkActive="active">Staff</a>
+      <a routerLink="/clinic/doctors" routerLinkActive="active">Doctors</a>
+      <a routerLink="/clinic/appointments" routerLinkActive="active">Appointments</a>
+      <a routerLink="/clinic/specialities" routerLinkActive="active">Specialties</a>
+    </nav>
+  </div>
+  <a class="version-label" (click)="showVersionDetails = true">v{{ appVersion }}</a>
+</div>
+
+<div *ngIf="showVersionDetails">
+  <div class="overlay-backdrop" (click)="showVersionDetails = false"></div>
+  <div class="overlay-modal">
+    <mat-card>
+      <div class="card-header">
+        <span>Version Details</span>
+        <button mat-icon-button (click)="showVersionDetails = false">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+      <div class="card-content">
+        <p>Current version: <strong>{{ appVersion }}</strong></p>
+        <p>Build date: {{ buildingDate }}</p>
+        <p>Notes: {{notes}}.</p>
+      </div>
+    </mat-card>
+  </div>
+</div>

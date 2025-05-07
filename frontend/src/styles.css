@@ -1,0 +1,95 @@
+/* Global styles */
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Tablas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+}
+
+/* Encabezado de tabla */
+thead {
+  background-color: #2c3e50;
+  color: white;
+}
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #2c3e50;
+  color: white;
+  z-index: 2;
+  border: 1px solid #ccc;
+  box-shadow: none; /* Evitar elevación al hacer scroll */
+}
+
+/* Celdas */
+th, td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+/* Estilo para filas alternadas */
+tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Columna vacía de "No data available" */
+td[colspan] {
+  font-style: italic;
+  color: #888;
+}
+
+/* Scroll interno */
+.table-wrapper {
+  max-height: 500px;
+  overflow-y: auto;
+  margin-top: 20px; /* Se aplica aquí en vez de a la tabla */
+}
+
+img:not(.no-style) {
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  max-height: 30px;
+  max-width: 30px;
+}
+
+/* Encabezado invisible (para alinear tablas sin encabezado visible) */
+.invisible-header {
+  display: table-header-group;
+}
+
+.invisible-header th {
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+/* Responsive (opcional) */
+@media screen and (max-width: 768px) {
+  th, td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  img {
+    height: 24px;
+    width: 24px;
+  }
+}

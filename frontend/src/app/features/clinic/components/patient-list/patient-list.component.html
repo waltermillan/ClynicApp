@@ -1,0 +1,92 @@
+<!--Parients List -->
+<div class="table-wrapper">
+<table class="table table-bordered text-center">
+    <colgroup>
+        <col style="width: 10%">   <!-- ID -->
+        <col style="width: 20%">   <!-- Name -->
+        <col style="width: 25%">   <!-- Birth date -->
+        <col style="width: 25%">   <!-- ecurity Number-->
+        <col style="width: 10%">   <!-- Gender -->
+        <col style="width: 10%">   <!-- Actions -->
+    </colgroup>    
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Birth date</th>
+        <th>Security Number</th>
+        <th>Gender</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="patientList.length === 0">
+        <td colspan="4" class="text-center">No data available</td>
+      </tr>
+      <tr *ngFor="let patient of patientList">
+        <td style="text-align: center;">
+            {{ patient.id }}
+        </td>
+        <td style="text-align: left;">
+            {{ patient.name }}
+        </td>
+        <td style="text-align: center;">
+            {{ patient.dateOfBirth  | date: "dd/MM/yyyy" }}
+        </td>
+        <td style="text-align: left;">
+            {{ patient.securityNumber }}
+        </td>
+        <td style="text-align: left;">
+            {{ patient.gender }}
+        </td>
+        <td>
+            <img  src="assets/images/icons/trash-alt.svg" 
+            style="height: 30px;width: 30px;max-height: 30px;max-width: 30pc;"
+            (click)="deletePatient(patient.id)"/>
+        </td>
+      </tr>
+    </tbody>
+</table>
+</div>
+
+<!--Create new Patient-->
+<div class="table-wrapper">
+<form (ngSubmit)="addPatient()" #formPatient="ngForm">
+  <table class="table table-bordered text-center">
+      <colgroup>
+          <col style="width: 10%">   <!-- ID -->
+          <col style="width: 20%">   <!-- Name -->
+          <col style="width: 25%">   <!-- Birth date -->
+          <col style="width: 25%">   <!-- ecurity Number-->
+          <col style="width: 10%">   <!-- Gender -->
+          <col style="width: 10%">   <!-- Actions -->
+      </colgroup>      
+      <tbody>
+        <tr>
+          <td>&nbsp;</td>
+          <td>
+              <input type="text" #patientName [(ngModel)]="patientNew.name" required name="nane">
+          </td>
+          <td>
+              <input type="date" #patientDateOfBirth [(ngModel)]="patientNew.dateOfBirth" required name="DateOfBirth">
+          </td>
+          <td>
+              <input type="text" #patientSecurityNumber [(ngModel)]="patientNew.securityNumber" required name="SecurityNumber">
+          </td>
+          <td>
+            <select #patientGender [(ngModel)]="patientNew.gender" required name="gender">
+                  <option [value]="'M'">Male</option>
+                  <option [value]="'F'">Famele</option>
+            </select>
+          </td>
+          <td>
+            <button type="submit" [disabled]="!formPatient.valid" class="btn btn-link p-0">
+              <img  src="assets/images/icons/plus-icon.svg" 
+              style="height: 30px;width: 30px;max-height: 30px;max-width: 30pc;"/>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+</form>
+</div>

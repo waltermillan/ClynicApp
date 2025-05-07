@@ -1,0 +1,37 @@
+.description {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .accordion {
+    width: 80%;
+    margin: 0 auto;
+  }
+  
+  .accordion-item {
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .accordion-header {
+    background-color: #f1f1f1;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .accordion-header h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .accordion-body {
+    padding: 10px;
+    background-color: #fafafa;
+  }
+  
+  .accordion-body p {
+    margin: 0;
+    font-size: 16px;
+  }
+  

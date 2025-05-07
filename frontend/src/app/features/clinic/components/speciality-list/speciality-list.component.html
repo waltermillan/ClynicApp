@@ -1,0 +1,63 @@
+<div class="table-wrapper">
+<!--List Speciality-->
+<table class="table table-bordered text-center">
+    <colgroup>
+        <col style="width: 20%">   <!-- ID -->
+        <col style="width: 60%">   <!-- Name -->
+        <col style="width: 20%">   <!-- Actions -->
+    </colgroup>    
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="specialityList.length === 0">
+        <td colspan="4" class="text-center">No data available</td>
+      </tr>
+      <tr *ngFor="let speciality of specialityList">
+        <td style="text-align: center;">
+            {{ speciality.id }}
+        </td>
+        <td style="text-align: left;">
+            {{ speciality.name }}
+        </td>
+        <td>
+            <img  src="assets/images/icons/trash-alt.svg" 
+            style="height: 30px;width: 30px;max-height: 30px;max-width: 30pc;"
+            (click)="deleteSpeciality(speciality.id)"/>
+        </td>
+      </tr>
+    </tbody>
+</table>
+</div>
+
+<!-- Create new Speciality -->
+<div class="table-wrapper">
+  <form (ngSubmit)="addSpeciality()" #formSpeciality="ngForm">
+<table class="table table-bordered text-center">
+    <colgroup>
+        <col style="width: 20%">   <!-- ID -->
+        <col style="width: 60%">   <!-- Name -->
+        <col style="width: 20%">   <!-- Actions -->
+    </colgroup>      
+    <tbody>
+      <tr>
+        <td>&nbsp;</td>
+        <td>
+            <input type="text" #specialityName [(ngModel)]="specialityNew.name" required name="name">
+        </td>
+        <td>
+          <button type="submit" [disabled]="!formSpeciality.valid" class="btn btn-link p-0">
+              <img  src="assets/images/icons/plus-icon.svg"
+              style="height: 30px;width: 30px;max-height: 30px;max-width: 30pc;"/>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+</table>
+</form>
+</div>
+  

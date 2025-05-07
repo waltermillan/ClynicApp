@@ -1,0 +1,15 @@
+<div class="description">
+    <p>Click on each module to better understand what you can do in each module.</p>
+  </div>
+  
+  <div class="accordion">
+    <div *ngFor="let section of sections" class="accordion-item">
+      <div class="accordion-header" (click)="section.isOpen = !section.isOpen">
+        <h3>{{ section.title }}</h3>
+      </div>
+      <div class="accordion-body" *ngIf="section.isOpen">
+        <p>{{ section.content }}</p>
+      </div>
+    </div>
+  </div>
+  
